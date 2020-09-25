@@ -11,11 +11,19 @@ public class Student {
         this.firstName = firstName;
         this.gpa = gpa;
         this.gradYear = gradYear;
+
+        if(lastName.length() > 30 || firstName.length() > 30)
+        if(gpa < 0 || gpa > 4) {
+            throw new RuntimeException("Invalid input: The names of students should not exceed 30 letters.");
+        }
+        if(gradYear > 2022 || gradYear < 2018) {
+            throw new RuntimeException("Invalid input: The Graduation Year of students should be between 2018 and 2022.");
+        }
     }
 
     public String toString() {
         String result = lastName + ", " + firstName
-                + " " + gpa + " " + gradYear;
+                + " " + String.format("%.2f", gpa) + " " + gradYear;
         return result;
     }
 

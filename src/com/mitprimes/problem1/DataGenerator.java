@@ -1,9 +1,27 @@
+/**
+ *  This class fills a text file with a set amount of students with randomly generated parameters.
+ *
+ *  To run, set the variable BIG_INPUT to the name of the file that you would like to fill.
+ *  Additionally, the number of student records can be changed by changing the variable LENGTH.
+ *  Then, run the main method of this file.
+ *
+ * @problem 1
+ * @file-name DataGenerator.java
+ * @programming-language Java openjdk 14.0.2
+ * @development-framework IntelliJ
+ * @platform Windows 10
+ */
+
+
 package com.mitprimes.problem1;
 
 import com.mitprimes.Student;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,7 +33,8 @@ public class DataGenerator {
     // CONSTANTS //
     //===========//
 
-    final static String BIG_INPUT = "biginput-problem1.txt";
+    final static String BIG_INPUT = "input-problem1.txt";
+    final static int LENGTH = 1000000;
 
     public static void main(String[] args) {
 
@@ -30,10 +49,11 @@ public class DataGenerator {
 
     public static void generateData() throws IOException {
 
-
+//        URL url = DataGenerator.class.getClassLoader().getResource(BIG_INPUT);
+//        FileWriter writer = new FileWriter(url.getFile());
         FileWriter writer = new FileWriter(BIG_INPUT);
 
-        int length = 10000000;
+        int length = LENGTH;
 
         writer.write(Integer.toString(length));
 

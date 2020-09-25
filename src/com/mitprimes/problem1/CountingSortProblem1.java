@@ -1,3 +1,15 @@
+/**
+ *  This class sorts a text file according to the graduation years of students.
+ *
+ *  To run, run the main method of this class. Enter the input and output file names with the full path.
+ *
+ * @problem 1
+ * @file-name CountingSort.java
+ * @programming-language Java openjdk 14.0.2
+ * @development-framework IntelliJ
+ * @platform Windows 10
+ */
+
 package com.mitprimes.problem1;
 
 import com.mitprimes.Student;
@@ -5,13 +17,13 @@ import com.mitprimes.Student;
 import java.io.*;
 import java.util.Scanner;
 
-public class CountingSort {
+public class CountingSortProblem1 {
 
     //===========//
     // CONSTANTS //
     //===========//
 
-    final static String INPUT_FILE = "biginput-problem1.txt";
+    final static String INPUT_FILE = "input-problem1.txt";
     final static String OUTPUT_FILE = "output-problem1.txt";
 
     public static void main(String[] args) {
@@ -51,6 +63,12 @@ public class CountingSort {
                 line = reader.readLine();
 
                 String[] temp = line.split("\\s+");
+
+                if(temp.length != 4) {
+                    System.out.println("Invalid file format; please check your file and try again.");
+                    System.exit(1);
+                }
+
                 temp[0] = temp[0].replace(",", "");
 
                 inputArray[i] = new Student(temp[0], temp[1],
@@ -58,12 +76,19 @@ public class CountingSort {
             }
             reader.close();
 
+
+
+
             final long startTime = System.currentTimeMillis();
+
             Student[] sortedArray = countingSort(inputArray);
+
             final long endTime = System.currentTimeMillis();
 
             time = endTime - startTime;
             System.out.println("Total execution time: " + (time));
+
+
 
             FileWriter writer = new FileWriter(outputF);
 
@@ -80,6 +105,10 @@ public class CountingSort {
             writer.close();
 
         } catch (IOException e) {
+            System.out.println("Invalid file format; please check your file and try again.");
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid file format; please check your file and try again.");
             e.printStackTrace();
         }
     }
